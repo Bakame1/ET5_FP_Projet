@@ -1,0 +1,17 @@
+# Dépendances
+/node_modules
+
+# Build et Cache (Inutile sur GitHub)
+/dist
+/.angular
+/.sass-cache
+/connect.lock
+/coverage
+/src/main/resources/static/
+
+# IDE (Fichiers de config perso)
+/.vscode
+/.idea
+*.iws
+*.iml
+*.ipr
