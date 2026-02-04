@@ -24,8 +24,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
-    private String username;
+    @Column(unique = true, nullable = false) // nullable = false pour la sécurité
+    private String email;
 
     private String password;
 
@@ -37,6 +37,11 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getUsername() {
+        return email; // Spring Security utilise getUsername(), mais on lui renvoie l'email
     }
 
     @Override
