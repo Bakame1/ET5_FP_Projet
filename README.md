@@ -1,48 +1,69 @@
+# Mini projet Spring Boot et Angular
+## Polytech Paris-Saclay - Frameworks Professionels 2026
+**Morgan PHILIPPE et Marko BABIC**
+
 ### Pour tester le Backend
 
-1) lancer le fichier BackendApplication.java.
-2) Il faut que dans la console il y ait le message "Tomcat started on port 8080"
-3) Pour tester avec postman :
-   a) inscritpion :
-    POST http://localhost:8080/api/auth/register
- Avec en body : 
-{
-   "email": "test@test.com",
-   "password": "password123"
-   } 
-    b) login :
-    POST http://localhost:8080/api/auth/login
+1. Lancer le fichier `BackendApplication.java`.
+2. Vérifier dans la console que le message suivant s'affiche : `Tomcat started on port 8080`.
+3. **Pour tester avec Postman :**
 
-{
-"email": "test@test.com",
-"password": "password123"
-}
-Puis recuperer le token dans la reponse
+   **a) Inscription**
+    * **Méthode :** `POST`
+    * **URL :** `http://localhost:8080/api/auth/register`
+    * **Body :**
+      ```json
+      {
+        "email": "test@test.com",
+        "password": "password123"
+      }
+      ```
 
-c) tester une route protegee :
-http://localhost:8080/api/conferences
-Sans token : on reçoit une erreur 403
-Fonctionne si on met  le token du login dans le header Authorization de type Bearer Token
+   **b) Login**
+    * **Méthode :** `POST`
+    * **URL :** `http://localhost:8080/api/auth/login`
+    * **Body :**
+      ```json
+      {
+        "email": "test@test.com",
+        "password": "password123"
+      }
+      ```
+    * *Note : Récupérer le token dans la réponse pour la suite.*
 
-d) Creer une conference : 
-A nouveau il faut mettre le meme token au meme endroit
-POST http://localhost:8080/api/conferences
-body :
-{
-"title": "Conférence Java 2026",
-"location": "Paris",
-"date": "2026-12-25T10:00:00"
-}
-ATTENTION CELA DOIT ETER UNE DATE DANS LE FUTUR
+   **c) Tester une route protégée**
+    * **URL :** `http://localhost:8080/api/conferences`
+    * **Sans token :** on reçoit une erreur `403`.
+    * **Avec token :** Fonctionne si on met le token du login dans le header `Authorization` de type **Bearer Token**.
 
-e) Récupérer toutes les conférences
-A nouveau il faut mettre le meme token au meme endroit
-GET http://localhost:8080/api/conferences/future
-Pas de body
+   **d) Créer une conférence**
+    * *Note : Il faut mettre le même token au même endroit.*
+    * **Méthode :** `POST`
+    * **URL :** `http://localhost:8080/api/conferences`
+    * **Body :**
+      ```json
+      {
+        "title": "Conférence Java 2026",
+        "location": "Paris",
+        "date": "2026-12-25T10:00:00"
+      }
+      ```
+   > **ATTENTION :** CELA DOIT ÊTRE UNE DATE DANS LE FUTUR.
 
-f) Récupérer une conférence par son id
-A nouveau il faut mettre le meme token au meme endroit
-GET http://localhost:8080/api/conferences/{id}
-Pas de body
-Exemple : http://localhost:8080/api/conferences/1
-A condition que la conference existe
+   **e) Récupérer toutes les conférences**
+    * *Note : Il faut mettre le même token au même endroit.*
+    * **Méthode :** `GET`
+    * **URL :** `http://localhost:8080/api/conferences/future`
+    * **Body :** Aucun.
+
+   **f) Récupérer une conférence par son ID**
+    * *Note : Il faut mettre le même token au même endroit.*
+    * **Méthode :** `GET`
+    * **URL :** `http://localhost:8080/api/conferences/{id}`
+    * **Exemple :** `http://localhost:8080/api/conferences/1`
+    * **Condition :** La conférence doit exister.
+    * **Body :** Aucun.
+
+   **g) Documentation API**
+   Pour avoir un aperçu sur tous les endpoints, nous avons créé une doc Swagger :
+    * Aller dans le navigateur : http://localhost:8080/swagger-ui/index.html
